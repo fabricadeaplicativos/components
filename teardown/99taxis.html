@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello!</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h1 id="99-taxis-components">99 Taxis components</h1>
+
+
+
+<h2 id="conventions">Conventions</h2>
+
+<ul>
+<li>These components are built following <a href="http://schema.org/docs/full.html">schema.org</a> conventions.</li>
+<li><strong>UIComponents</strong> are the final HTML/CSS/JS components delivered to the browser.</li>
+<li><strong>Domain Entities</strong> are the abstract representations of real world entities treated by the system.</li>
+<li><strong>Domain operations</strong> the operations performed by the system, creating, changing and deleting entities.</li>
+</ul>
+
+<hr>
+
+
+
+<h3 id="passenger-claims-for-a-ride">Passenger claims for a ride</h3>
+
+<h4 id="uicomponents">UIComponents</h4>
+
+<h4 id="domain-entities">Domain Entities</h4>
+
+<ul>
+<li><strong>TaxiReservation</strong> a ride request, which is composed by: <br>
+<ul><li>provider:<strong>Person</strong> - the taxi driver.</li>
+<li>underName:<strong>Person</strong> - the passenger.</li>
+<li>pickupTime:<strong>DateTime</strong> - the time when the passenger is picked up.</li>
+<li>pickupLocation:<strong>Place</strong> - the place where the passenger is picked up.</li>
+<li>reservationStatus:<strong>Enumeration</strong> - a range of values able to identify each status possibility (pending, accepted, denied, confirmed, canceled, closed).</li></ul></li>
+</ul>
+
+<h4 id="domain-operations">Domain Operations</h4>
+
+<ol>
+<li><p><code>getLocation():Place</code></p>
+
+<blockquote>
+  <p>Get the passenger’s location based on GPS or passenger’s input. <br>
+  <strong>return</strong>: a Place object corresponding to the passenger’s location.</p>
+</blockquote></li>
+<li><p><code>findNearTaxi(Place):Person</code></p>
+
+<blockquote>
+  <p>It uses the passenger’s location to find the nearest cab driver. <br>
+  <strong>return</strong>: a Person object corresponding to the nearest cab driver. </p>
+</blockquote></li>
+<li><p><code>createRequest(Place, DateTime, Person, Person):TaxiReservation</code></p>
+
+<blockquote>
+  <p>It creates a request based on the passenger’s location, passenger’s info, pick up’s location and time, and cab driver’s info. <br>
+  <strong>return</strong>: a pending TaxiReservation instance.</p>
+</blockquote></li>
+<li><p><code>callTaxi(TaxiReservation)</code></p>
+
+<blockquote>
+  <p>It communicates the cab driver about the passenger’s request. <br>
+  <strong>return</strong>: whether the cab driver accept the ride or not, also it changes the TaxiReservation’s reservationStatus to accepted or denied.</p>
+</blockquote></li>
+<li><p><code>estimateTime(TaxiReservation):DateTime</code></p>
+
+<blockquote>
+  <p>Based on passenger’s and driver’s locations, it estimates the time to arrival after payment. <br>
+  <strong>return</strong>: a time in the future estimating the driver’s arrival time.</p>
+</blockquote></li>
+</ol>
+
+<hr>
+
+
+
+<h3 id="cab-driver-seeks-passenger">Cab driver seeks passenger</h3>
+
+<h4 id="uicomponents-1">UIComponents</h4>
+
+
+
+<h4 id="domain-entities-1">Domain Entities</h4>
+
+<ul>
+<li><strong>TaxiReservation</strong> a ride request.</li>
+<li><strong>Place</strong> a location.</li>
+<li><strong>Person</strong> meaning the passenger or the driver.</li>
+<li><strong>DateTime</strong> a time spot.</li>
+<li><strong>ItemAvailability</strong> the driver’s availability which might be: available, unavailable, onaRide.</li>
+</ul>
+
+<h4 id="domain-operations-1">Domain Operations</h4>
+
+<ol>
+<li><p><code>getLocaion():Place</code></p>
+
+<blockquote>
+  <p>It asks the driver’s location for the location service. <br>
+  <strong>return</strong>: a Place instance corresponding to the current driver’s location.</p>
+</blockquote></li>
+<li><p><code>setDriverState(ItemAvailability, Place)</code></p>
+
+<blockquote>
+  <p>It updates the driver’s availability and the driver’s current location.</p>
+</blockquote></li>
+<li><p><code>notifyRideRequest(TaxiReservation, ItemList:Place, DateTime)</code></p>
+
+<blockquote>
+  <p>This action is performed by the driver service towards the DriverMainUI. The ItemList holds many placed, which means the discrete points of a route.</p>
+</blockquote></li>
+<li><p><code>accept(TaxiReservation)</code></p>
+
+<blockquote>
+  <p>The driver might accept or deny the ride request.</p>
+</blockquote></li>
+</ol>
+
+<hr>
+
+</html>
