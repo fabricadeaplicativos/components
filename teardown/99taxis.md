@@ -1,29 +1,42 @@
-99 Taxis components
-===================
+99 Taxis
+=======
+99 Taxis application components.
+> **Tags:** *route*, *location*, *notification*, *chat*.
 
-Conventions
--------------
-* These components are built following [schema.org](http://schema.org/docs/full.html) conventions.
-* **UIComponents** are the final HTML/CSS/JS components delivered to the browser.
-* **Domain Entities** are the abstract representations of real world entities treated by the system.
-* **Domain operations** the operations performed by the system, creating, changing and deleting entities.
+###Conventions
+* **Maker** is the platform end user, an app maker.
+* **User** is the app end user.
+* **UIComponents** or **UIC** is here referred to classify all visual and non-visual components deployed on the target devices of the platform.
+* **DomainEntities** or **DE** is the set of entities that can be either from the platform domain, the maker domain or a subset. Must be written in CamelCase.
+* **Operations** are border components that provide all the interactions between the UIC and DE. Must be written in lowercase and be a **verb**.
+```sequence
+UIComponent->DomainEntity: operation
+Note right of DomainEntity: operation is processed
+DomainEntity-->UIComponent: result
+```
+* [**Schema.org**](http://schema.org/) is used as standard for DE modelling convention.
+* The [**Action**](http://schema.org/Action) schema is used to envelop all operations, being a suffix for all specialized actions.
 
 ***
-### Passenger claims for a ride
+### Domain Entities
 
-#### UIComponents
+* [**Enumeration**](http://schema.org/Enumeration) is a list of objects of any type.
+* [**Person**](http://schema.org/Person) is an entity able to encapsulate a system user with its properties like name, email, and so on. Both passenger and cab driver are represented through this entity.
+* [**DateTime**](http://schema.org/DateTime) is a combination of date and time.
+* [**Place**](http://schema.org/Place) is a location's representation.
+* [**ReservationStatusType**](http://schema.org/ReservationStatusType), a set of values able to identify each status possibility. In order to fit the ride request status:
+	*  [*pending*, *accepted*, *denied*, *confirmed*, *canceled*, *closed*]
+* [**ItemAvailability**](http://schema.org/ItemAvailability) the driver's availability which might be: 
+	* [*available*, *unavailable*, *onaRide*]
+* [**TaxiReservation**](http://schema.org/TaxiReservation) is the entity that encapsulates the ride request. It is composed by:
+	* provider:**Person** (the cab driver);
+	* underName:**Person** (the passenger);
+	* pickupTime:**DateTime**;
+	* pickupLocation:**Place**;
+	* reservationStatus:**ReservationStatusType**;
 
-#### Domain Entities
-
-* **TaxiReservation** a ride request, which is composed by:
-	* provider:**Person** - the taxi driver.
-	* underName:**Person** - the passenger.
-	* pickupTime:**DateTime** - the time when the passenger is picked up.
-	* pickupLocation:**Place** - the place where the passenger is picked up.
-	* reservationStatus:**Enumeration** - a range of values able to identify each status possibility (pending, accepted, denied, confirmed, canceled, closed).
-
-#### Domain Operations
-
+### Domain Operations
+####Passenger claims for a ride
 1. `getLocation():Place`
 > Get the passenger's location based on GPS or passenger's input.
 > **return**: a Place object corresponding to the passenger's location.
@@ -44,20 +57,7 @@ Conventions
 > Based on passenger's and driver's locations, it estimates the time to arrival after payment.
 > **return**: a time in the future estimating the driver's arrival time.
 
-***
-### Cab driver seeks passenger
-
-#### UIComponents
-
-#### Domain Entities
-
-* **TaxiReservation** a ride request.
-* **Place** a location.
-* **Person** meaning the passenger or the driver.
-* **DateTime** a time spot.
-* **ItemAvailability** the driver's availability which might be: available, unavailable, onaRide.
-
-#### Domain Operations
+#### Cab driver seeks passenger
 
 1. `getLocaion():Place`
 > It asks the driver's location for the location service.
@@ -72,4 +72,19 @@ Conventions
 4. `accept(TaxiReservation)`
 > The driver might accept or deny the ride request.
 
-***
+###UIComponents
+* Login Form
+* Phone Number Input
+* Alphanumeric Input
+* Chat List View
+* Chat Form
+* Audio Button
+* Input Combo -- *input+button*
+* UISelector
+ * type
+* List View
+ * collection
+* ContactUI
+ * layout
+* Action
+ * src

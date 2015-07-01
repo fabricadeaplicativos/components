@@ -1,45 +1,62 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hello!</title>
-<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
-<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-</head>
-<body><div class="container"><h1 id="99-taxis-components">99 Taxis components</h1>
+<h1 id="99-taxis">99 Taxis</h1>
+
+<p>99 Taxis application components.</p>
+
+<blockquote>
+  <p><strong>Tags:</strong> <em>route</em>, <em>location</em>, <em>notification</em>, <em>chat</em>.</p>
+</blockquote>
 
 
 
-<h2 id="conventions">Conventions</h2>
+<h3 id="conventions">Conventions</h3>
 
 <ul>
-<li>These components are built following <a href="http://schema.org/docs/full.html">schema.org</a> conventions.</li>
-<li><strong>UIComponents</strong> are the final HTML/CSS/JS components delivered to the browser.</li>
-<li><strong>Domain Entities</strong> are the abstract representations of real world entities treated by the system.</li>
-<li><strong>Domain operations</strong> the operations performed by the system, creating, changing and deleting entities.</li>
+<li><strong>Maker</strong> is the platform end user, an app maker.</li>
+<li><strong>User</strong> is the app end user.</li>
+<li><strong>UIComponents</strong> or <strong>UIC</strong> is here referred to classify all visual and non-visual components deployed on the target devices of the platform.</li>
+<li><strong>DomainEntities</strong> or <strong>DE</strong> is the set of entities that can be either from the platform domain, the maker domain or a subset. Must be written in CamelCase.</li>
+<li><strong>Operations</strong> are border components that provide all the interactions between the UIC and DE. Must be written in lowercase and be a <strong>verb</strong>.</li>
+</ul>
+
+
+
+<div class="sequence-diagram"><svg height="265" version="1.1" width="466.625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; top: 0.25px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><marker id="raphael-marker-endblock55-obj315" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock55-obj321" markerHeight="5" markerWidth="5" orient="auto" refX="2.5" refY="2.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 2.5 2.5) scale(1,1)" stroke-width="1.0000" fill="#000" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker></defs><rect x="10" y="20" width="108.125" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="20" y="30" width="88.125" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="64.0625" y="39.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">UIComponent</tspan></text><rect x="10" y="206" width="108.125" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="20" y="216" width="88.125" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="64.0625" y="225.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">UIComponent</tspan></text><path fill="none" stroke="#000000" d="M64.0625,59L64.0625,206" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="138.125" y="20" width="106.3125" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="148.125" y="30" width="86.3125" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="191.28125" y="39.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">DomainEntity</tspan></text><rect x="138.125" y="206" width="106.3125" height="39" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="148.125" y="216" width="86.3125" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="191.28125" y="225.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">DomainEntity</tspan></text><path fill="none" stroke="#000000" d="M191.28125,59L191.28125,206" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="96.734375" y="74.5" width="61.875" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="127.671875" y="84" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">operation</tspan></text><path fill="none" stroke="#000000" d="M64.0625,98C64.0625,98,162.71850220672786,98,186.27454960862724,98" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj315)" stroke-dasharray="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><rect x="211.28125" y="118" width="152.1875" height="29" rx="0" ry="0" fill="none" stroke="#000000" stroke-width="2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><rect x="216.28125" y="123" width="142.1875" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="287.375" y="132.5" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">operation is processed</tspan></text><rect x="109.671875" y="162.5" width="36" height="19" rx="0" ry="0" fill="#ffffff" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></rect><text x="127.671875" y="172" text-anchor="middle" font-family="Andale Mono, monospace" font-size="16px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: 'Andale Mono', monospace; font-size: 16px;"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">result</tspan></text><path fill="none" stroke="#000000" d="M191.28125,186C191.28125,186,92.62524779327214,186,69.06920039137276,186" stroke-width="2" marker-end="url(#raphael-marker-endblock55-obj321)" stroke-dasharray="6,2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path></svg></div>
+
+<ul>
+<li><a href="http://schema.org/"><strong>Schema.org</strong></a> is used as standard for DE modelling convention.</li>
+<li>The <a href="http://schema.org/Action"><strong>Action</strong></a> schema is used to envelop all operations, being a suffix for all specialized actions.</li>
 </ul>
 
 <hr>
 
 
 
-<h3 id="passenger-claims-for-a-ride">Passenger claims for a ride</h3>
-
-<h4 id="uicomponents">UIComponents</h4>
-
-<h4 id="domain-entities">Domain Entities</h4>
+<h3 id="domain-entities">Domain Entities</h3>
 
 <ul>
-<li><strong>TaxiReservation</strong> a ride request, which is composed by: <br>
-<ul><li>provider:<strong>Person</strong> - the taxi driver.</li>
-<li>underName:<strong>Person</strong> - the passenger.</li>
-<li>pickupTime:<strong>DateTime</strong> - the time when the passenger is picked up.</li>
-<li>pickupLocation:<strong>Place</strong> - the place where the passenger is picked up.</li>
-<li>reservationStatus:<strong>Enumeration</strong> - a range of values able to identify each status possibility (pending, accepted, denied, confirmed, canceled, closed).</li></ul></li>
+<li><a href="http://schema.org/Enumeration"><strong>Enumeration</strong></a> is a list of objects of any type.</li>
+<li><a href="http://schema.org/Person"><strong>Person</strong></a> is an entity able to encapsulate a system user with its properties like name, email, and so on. Both passenger and cab driver are represented through this entity.</li>
+<li><a href="http://schema.org/DateTime"><strong>DateTime</strong></a> is a combination of date and time.</li>
+<li><a href="http://schema.org/Place"><strong>Place</strong></a> is a location’s representation.</li>
+<li><a href="http://schema.org/ReservationStatusType"><strong>ReservationStatusType</strong></a>, a set of values able to identify each status possibility. In order to fit the ride request status: <br>
+<ul><li>[<em>pending</em>, <em>accepted</em>, <em>denied</em>, <em>confirmed</em>, <em>canceled</em>, <em>closed</em>]</li></ul></li>
+<li><a href="http://schema.org/ItemAvailability"><strong>ItemAvailability</strong></a> the driver’s availability which might be:  <br>
+<ul><li>[<em>available</em>, <em>unavailable</em>, <em>onaRide</em>]</li></ul></li>
+<li><a href="http://schema.org/TaxiReservation"><strong>TaxiReservation</strong></a> is the entity that encapsulates the ride request. It is composed by: <br>
+<ul><li>provider:<strong>Person</strong> (the cab driver);</li>
+<li>underName:<strong>Person</strong> (the passenger);</li>
+<li>pickupTime:<strong>DateTime</strong>;</li>
+<li>pickupLocation:<strong>Place</strong>;</li>
+<li>reservationStatus:<strong>ReservationStatusType</strong>;</li></ul></li>
 </ul>
 
-<h4 id="domain-operations">Domain Operations</h4>
+
+
+<h3 id="domain-operations">Domain Operations</h3>
+
+
+
+<h4 id="passenger-claims-for-a-ride">Passenger claims for a ride</h4>
 
 <ol>
 <li><p><code>getLocation():Place</code></p>
@@ -74,27 +91,9 @@
 </blockquote></li>
 </ol>
 
-<hr>
 
 
-
-<h3 id="cab-driver-seeks-passenger">Cab driver seeks passenger</h3>
-
-<h4 id="uicomponents-1">UIComponents</h4>
-
-
-
-<h4 id="domain-entities-1">Domain Entities</h4>
-
-<ul>
-<li><strong>TaxiReservation</strong> a ride request.</li>
-<li><strong>Place</strong> a location.</li>
-<li><strong>Person</strong> meaning the passenger or the driver.</li>
-<li><strong>DateTime</strong> a time spot.</li>
-<li><strong>ItemAvailability</strong> the driver’s availability which might be: available, unavailable, onaRide.</li>
-</ul>
-
-<h4 id="domain-operations-1">Domain Operations</h4>
+<h4 id="cab-driver-seeks-passenger">Cab driver seeks passenger</h4>
 
 <ol>
 <li><p><code>getLocaion():Place</code></p>
@@ -120,6 +119,22 @@
 </blockquote></li>
 </ol>
 
-<hr>
+<h3 id="uicomponents">UIComponents</h3>
 
-</html>
+<ul>
+<li>Login Form</li>
+<li>Phone Number Input</li>
+<li>Alphanumeric Input</li>
+<li>Chat List View</li>
+<li>Chat Form</li>
+<li>Audio Button</li>
+<li>Input Combo – <em>input+button</em></li>
+<li>UISelector <br>
+<ul><li>type</li></ul></li>
+<li>List View <br>
+<ul><li>collection</li></ul></li>
+<li>ContactUI <br>
+<ul><li>layout</li></ul></li>
+<li>Action <br>
+<ul><li>src</li></ul></li>
+</ul>
